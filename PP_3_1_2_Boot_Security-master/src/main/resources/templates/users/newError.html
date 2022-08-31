@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавление пользователя</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/admin}" th:object="${user}">
+  <label for="username" > Введите имя пользователя </label>
+  <input name="username" type="text" id="username"/>
+
+  <br/>
+
+  <label for="age" > Введите возраст пользователя</label>
+  <input name="age" type="text" id="age"/>
+
+  <br/>
+
+  <label for="email" > Введите адрес email </label>
+  <input name="email" type="text" id="email"/>
+
+  <br/>
+
+  <label for="password" > Пароль пользователя </label>
+  <input type="text" th:field="*{password}" id="password"/>
+
+  <br/>
+
+  <label for="roles" > Введите роли (1 - user, 2 - admin) </label>
+  <input type="text" th:field="*{roles}" id="roles"/>
+
+  <br/>
+
+  <h1> Проверьте корректность ввода данных </h1>
+
+  <input type="submit" value="Создать пользователя">
+
+</form>
+
+<br/>
+<hr/>
+<form th:action="@{/logout}" method="post">
+  <button type="submit">Выход</button>
+</form>
+</body>
+</html>

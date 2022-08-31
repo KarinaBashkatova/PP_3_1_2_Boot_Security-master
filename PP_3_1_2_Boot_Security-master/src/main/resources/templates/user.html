@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Spring Security Example</title>
+</head>
+<body>
+<h1>User, welcome spring boot security page!</h1>
+
+<table border="1">
+    <thead class="table">
+    <tr>
+        <td bgcolor='#C0C0C0' align='center' style='width: 50px;'>
+            <b>ID</b>
+        </td>
+        <td bgcolor='#C0C0C0' align='center' style='width: 150px;'>
+            <b>Имя пользователя</b>
+        </td>
+        <td bgcolor='#C0C0C0' align='center' style='width: 150px;'>
+            <b>Возраст</b>
+        </td>
+        <td bgcolor='#C0C0C0' align='center' style='width: 200px;'>
+            <b>Email</b>
+        </td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td align='center' style='width: 50px;' th:text="${user.getId()}">VALUE</td>
+        <td align='center' style='width: 150px;' th:text="${user.getName()}">VALUE</td>
+        <td align='center' style='width: 150px;' th:text="${user.getAge()}">VALUE</td>
+        <td align='center' style='width: 200px;'th:text="${user.getEmail()}">VALUE</td>
+    </tr>
+    <tbody>
+</table>
+
+<br/>
+<hr/>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Выход</button>
+</form>
+
+
+</body>
+</html>

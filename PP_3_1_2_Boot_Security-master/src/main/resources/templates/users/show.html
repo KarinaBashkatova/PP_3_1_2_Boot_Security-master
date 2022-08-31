@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Пользователь</title>
+</head>
+<body>
+
+<table border="1">
+  <thead class="table">
+  <tr>
+    <td bgcolor='#C0C0C0' align='center' style='width: 50px;'>
+      <b>ID</b>
+    </td>
+    <td bgcolor='#C0C0C0' align='center' style='width: 150px;'>
+      <b>Имя пользователя</b>
+    </td>
+    <td bgcolor='#C0C0C0' align='center' style='width: 150px;'>
+      <b>Возраст</b>
+    </td>
+    <td bgcolor='#C0C0C0' align='center' style='width: 200px;'>
+      <b>Email</b>
+    </td>
+  </tr>
+  </thead>
+
+  <tbody>
+<tr>
+  <td align='center' style='width: 50px;' th:text="${user.getId()}">VALUE</td>
+  <td align='center' style='width: 150px;' th:text="${user.getUsername()}">VALUE</td>
+  <td align='center' style='width: 150px;' th:text="${user.getAge()}">VALUE</td>
+  <td align='center' style='width: 200px;'th:text="${user.getEmail()}">VALUE</td>
+</tr>
+  <tbody>
+</table>
+<div sec:authorize="hasAuthority('ROLE_ADMIN')">
+<br/>
+<hr/>
+
+<a th:href="@{/admin/{id}/edit(id=${user.getId()})}">
+  <input type="submit" value="Внести изменения"/>
+</a>
+
+<br/>
+<br/>
+
+
+<form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+  <input type="submit" value="Удалить пользователя"/>
+</form>
+</div>
+
+<br/>
+<hr/>
+<form th:action="@{/logout}" method="post">
+  <button type="submit">Выход</button>
+</form>
+</body>
+</html>
