@@ -1,7 +1,5 @@
 package ru.kata.spring.boot_security.demo.model;
 
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -9,13 +7,14 @@ import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
 
-import static javax.persistence.FetchType.EAGER;
-
 /**
  * @author Karina Bashkatova.
  */
+
 @Entity
 @Table(name = "user")
+@NamedEntityGraph(name = "graph.User.roles",
+        attributeNodes = @NamedAttributeNode("roles"))
 public class User {
 
     public User() {
@@ -31,12 +30,14 @@ public class User {
     @NotEmpty(message =  "Обязательное поле")
     private String userName;
 
-    @ManyToMany(fetch = EAGER)
+
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
 
     @Column(name = "age")
     @Min(value = 0, message = "Недопустимое значение")
@@ -52,12 +53,13 @@ public class User {
     private String password;
 
 
-    public User(int id, String userName, int age, String email, String password) {
+    public User(int id, String userName, int age, String email, String password, Set<Role> roles) {
         this.id = id;
         this.userName = userName;
         this.age = age;
         this.email = email;
         this.password = password;
+        this.roles = roles;
     }
 
     public void setId(int id) {
@@ -110,5 +112,6 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 
 }

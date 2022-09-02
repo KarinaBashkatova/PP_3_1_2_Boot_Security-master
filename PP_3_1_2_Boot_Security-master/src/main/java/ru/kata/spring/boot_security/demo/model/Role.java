@@ -1,12 +1,8 @@
 package ru.kata.spring.boot_security.demo.model;
 
-import lombok.*;
-import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Objects;
-import java.util.Set;
 
 /**
  * @author Karina Bashkatova.
@@ -57,5 +53,3 @@ public class Role implements GrantedAuthority {
         return name;
     }
 }
-
-
