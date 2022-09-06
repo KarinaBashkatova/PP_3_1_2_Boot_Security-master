@@ -5,30 +5,30 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * @author Karina Bashkatova.
  */
 
-
-public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
+public class MyUserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
     private final User user;
 
-    public UserDetails(User user) {
+    public MyUserDetails(User user) {
         this.user = user;
     }
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<Role> roles = user.getRoles();
-        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
+ /*       Collection<Role> roles = user.getRoles();
+        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());*/
+        return user.getRoles().stream()
+                .map(Role::getAuthority)
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -64,5 +64,6 @@ public class UserDetails implements org.springframework.security.core.userdetail
     public User getUser() { // нужен нам для полуения данных аутентифицированного пользователя
         return this.user;
     }
+
 
 }
