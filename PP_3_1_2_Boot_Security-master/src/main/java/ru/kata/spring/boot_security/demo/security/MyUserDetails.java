@@ -20,7 +20,6 @@ public class MyUserDetails implements org.springframework.security.core.userdeta
         this.user = user;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
  /*       Collection<Role> roles = user.getRoles();
@@ -64,6 +63,5 @@ public class MyUserDetails implements org.springframework.security.core.userdeta
     public User getUser() { // нужен нам для полуения данных аутентифицированного пользователя
         return this.user;
     }
-
 
 }

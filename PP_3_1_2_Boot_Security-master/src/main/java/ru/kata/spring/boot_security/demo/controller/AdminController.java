@@ -49,12 +49,6 @@ public class AdminController {
         return "users/all"  ;
     }
 
-//    @GetMapping("/{id}")
- //   public String show(@PathVariable("id") int id, Model model) {
- //       model.addAttribute("user", userService.showUser(id));
-//        return "users/show";
- //   }
-
     @GetMapping("/new")
     public String newUser(@ModelAttribute ("user") User user, Model model) {
         model.addAttribute("roles", roleServiceImpl.getRoleList());
