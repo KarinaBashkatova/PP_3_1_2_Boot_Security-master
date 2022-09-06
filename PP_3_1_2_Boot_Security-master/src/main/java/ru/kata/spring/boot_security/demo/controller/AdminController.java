@@ -44,8 +44,6 @@ public class AdminController {
         model.addAttribute("users", userService.showAllUsers());
         model.addAttribute("roles", roleServiceImpl.getRoleList());
 
-
-
         return "users/all"  ;
     }
 
