@@ -8,17 +8,11 @@
 </head>
 
 <body>
-<style>
-.form-label {
-    text-align: center;
-}
-</style>
 
+
+<!-Основной контейнер-->
 <div class="container-fluid">
-
     <div class="row">
-
-
 
         <div class="col-md-12">
             <div class="row">
@@ -63,7 +57,7 @@
                                     </h1>
                                 </div>
 
-                                <!--User-table and New=user switch-->
+                                <!--User-table and New-user switch-->
 
                                 <ul class="nav nav-tabs">
                                     <li class="nav-item">
@@ -77,97 +71,102 @@
 
                             <div id="tables-holder">
                                 <div class="border">
-                                <table class="table border" id="new-user-form">
-                                    <thead class="thead-light">
-                                    <tr>
-                                        <th scope="col">Add New User</th>
-                                    </tr>
-                                    </thead>
-                                </table>
+                                    <table class="table border" id="new-user-form">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">Add new user</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
 
                                 <div class="col-md-10">
                                     <div class="row">
 
-                                        <div class="col-md-4"></div>
-
                                         <div class="col-md-4">
-                                            <form role="form">
-                                                <div class="form-group">
+                                        </div>
 
-                                                    <form  th:action="@{/admin}" th:object="${user}" th:method="POST">
+                                        <!--Расположение формы ввода в средней колонке-->
+                                        <div class="col-md-4">
 
-                                                        <div class="form-group">
-                                                            <label for="username"><b>Username</b></label>
-                                                            <input
-                                                                    type="text"
-                                                                    th:field="*{username}"
-                                                                    class="form-control"
-                                                                    id="username"
-                                                                    placeholder="Username"/>
-                                                        </div>
+                                            <!--Форма ввода для нового пользователя-->
+                                            <div class="form-group">
+                                                <form  th:action="@{/admin/}" th:object="${user}" th:method="POST">
 
-                                                        <div class="form-group">
-                                                            <label for="age"><b>Age</b></label>
-                                                            <input
-                                                                    type="number"
-                                                                    th:field="*{age}"
-                                                                    class="form-control"
-                                                                    id="age"
-                                                                    placeholder="Age"/>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                                <label for="email"><b>Age</b></label>
-                                                            <input
-                                                                    type="text"
-                                                                    th:field="*{email}"
-                                                                    class="form-control"
-                                                                    id="email"
-                                                                    placeholder="Email"/>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="password"><b>Password</b></label>
-                                                            <input
-                                                                    type="text"
-                                                                    th:field="*{password}"
-                                                                    class="form-control"
-                                                                   id="password"
-                                                                    placeholder="Password"/>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <div style="text-align: center">
-                                                            <label for="roles"><b>Role</b></label>
-                                                            </div>
-                                                            <select multiple class="custom-select" name="roles" id="roles" size="2">
-                                                                <option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.toString()}">
-                                                                </option>
-                                                            </select>
-                                                        </div>
-
+                                                    <div class="form-group">
                                                         <div style="text-align: center">
-                                                            <button type="submit" class="btn btn-success">Add new user</button>
+                                                            <label for="username"><b>Username</b></label>
                                                         </div>
-                                                    </form>
+                                                        <input type="text"
+                                                               th:field="*{username}"
+                                                               class="form-control"
+                                                               id="username"
+                                                               placeholder="Username"/>
+                                                    </div>
 
-                                                </div>
-                                            </form>
+                                                    <div class="form-group">
+                                                        <div style="text-align: center">
+                                                            <label for="age"><b>Age</b></label>
+                                                        </div>
+                                                        <input type="number"
+                                                               th:field="*{age}"
+                                                               class="form-control"
+                                                               id="age"
+                                                               placeholder="Age"/>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div style="text-align: center">
+                                                            <label for="email"><b>Email</b></label>
+                                                        </div>
+                                                        <input type="text"
+                                                               th:field="*{email}"
+                                                               class="form-control"
+                                                               id="email"
+                                                               placeholder="Email"/>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div style="text-align: center">
+                                                            <label for="password"><b>Password</b></label>
+                                                        </div>
+                                                        <input type="text"
+                                                               th:field="*{password}"
+                                                               class="form-control"
+                                                               id="password"
+                                                               placeholder="Password"/>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div style="text-align: center">
+                                                            <label for="roles"><b>Role</b></label>
+                                                        </div>
+                                                        <select multiple class="custom-select" name="roles" id="roles" size="2">
+                                                            <option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.toString()}">
+                                                            </option>
+                                                        </select>
+                                                    </div>
+
+                                                    <div style="text-align: center">
+                                                        <button type="submit" class="btn btn-success">Add new user</button>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                         <div class="col-md-4">
+                                        </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

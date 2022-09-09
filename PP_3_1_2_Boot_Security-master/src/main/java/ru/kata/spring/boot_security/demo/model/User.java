@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -27,7 +26,7 @@ public class User{
 
 
 
-    @Column(name="username")
+    @Column(name="username", unique = true)
     @NotEmpty(message =  "Обязательное поле")
     private String userName;
 
@@ -116,9 +115,8 @@ public class User{
 
     public String rolesToString() {
         String delim = ", ";
-        String res = roles.stream()
+        return roles.stream()
                 .map(Object::toString).collect(Collectors.joining(delim));
-        return res;
         }
 
 

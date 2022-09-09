@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.kata.spring.boot_security.demo.security.MyUserDetails;
 import ru.kata.spring.boot_security.demo.services.RoleServiceImpl;
 import ru.kata.spring.boot_security.demo.services.UserDetailServ;
-import ru.kata.spring.boot_security.demo.services.UserService;
+import ru.kata.spring.boot_security.demo.services.UserServiceImpl;
 
 /**
  * @author Karina.
@@ -18,17 +18,10 @@ import ru.kata.spring.boot_security.demo.services.UserService;
 @Controller
 @RequestMapping()
 public class UserController {
-
-    private final UserService userService;
-
-    private final UserDetailServ userDetailServ;
-
     private final RoleServiceImpl roleServiceImpl;
 
     @Autowired
-    public UserController(UserService userService, UserDetailServ userDetailServ, RoleServiceImpl roleServiceImpl) {
-        this.userService = userService;
-        this.userDetailServ = userDetailServ;
+    public UserController(RoleServiceImpl roleServiceImpl) {
         this.roleServiceImpl = roleServiceImpl;
     }
 
