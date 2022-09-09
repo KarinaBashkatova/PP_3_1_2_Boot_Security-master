@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Страница входа</title>
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<form name="f" method="post" action="/process_login">
-  <label for="username">Введите имя пользователя: </label>
-  <input type="text" name="username" id="username"/>
-  </br>
-  <label for="password">Введите пароль: </label>
-  <input type="text" name="password" id="password"/>
-    </br>
-    <input type="submit" value="Login">
 
-    <div th:if="${param.error}" style="color: maroon">
-        Некорректные данные для входа
+    <title>Sign in</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+        </div>
+        <div class="col-md-2">
+            <div class="page-header">
+
+                <br>
+                <br>
+
+                <h3>
+                   Please sign in
+                </h3>
+            </div>
+            <form name="f" method="post" action="/process_login">
+                <div class="form-group">
+
+                    <label for="inputUsername" class="sr-only">Username</label>
+                    <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="">
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="text" name="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                </div>
+
+                <button   type="submit" class="btn btn-md btn-block btn-primary">
+                    Sign in
+                </button>
+            </form>
+        </div>
+        <div class="col-md-5">
+        </div>
     </div>
-</form>
-</body>
-</html>
+</div>

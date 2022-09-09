@@ -7,7 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.kata.spring.boot_security.demo.security.UserDetails;
+import ru.kata.spring.boot_security.demo.security.MyUserDetails;
+import ru.kata.spring.boot_security.demo.services.RoleServiceImpl;
 import ru.kata.spring.boot_security.demo.services.UserDetailServ;
 import ru.kata.spring.boot_security.demo.services.UserService;
 
@@ -22,11 +23,13 @@ public class UserController {
 
     private final UserDetailServ userDetailServ;
 
+    private final RoleServiceImpl roleServiceImpl;
 
     @Autowired
-    public UserController(UserService userService, UserDetailServ userDetailServ) {
+    public UserController(UserService userService, UserDetailServ userDetailServ, RoleServiceImpl roleServiceImpl) {
         this.userService = userService;
         this.userDetailServ = userDetailServ;
+        this.roleServiceImpl = roleServiceImpl;
     }
 
 
@@ -34,9 +37,10 @@ public class UserController {
     @GetMapping("/user")
     public String showUserInfo(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+        MyUserDetails userDetails = (MyUserDetails)authentication.getPrincipal();
         model.addAttribute("user", userDetails.getUser());
-        return "users/show";
+        model.addAttribute("roles", roleServiceImpl.getRoleList());
+        return "user";
     }
 
 

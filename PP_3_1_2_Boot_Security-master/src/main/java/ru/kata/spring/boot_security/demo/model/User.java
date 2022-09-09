@@ -6,6 +6,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Karina Bashkatova.
@@ -15,7 +16,7 @@ import java.util.Set;
 @Table(name = "user")
 @NamedEntityGraph(name = "graph.User.roles",
         attributeNodes = @NamedAttributeNode("roles"))
-public class User {
+public class User{
 
     public User() {
     }
@@ -36,7 +37,7 @@ public class User {
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    private Set<Role> roles;
 
 
     @Column(name = "age")
@@ -112,6 +113,14 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public String rolesToString() {
+        String delim = ", ";
+        String res = roles.stream()
+                .map(Object::toString).collect(Collectors.joining(delim));
+        return res;
+        }
+
 
 
 }

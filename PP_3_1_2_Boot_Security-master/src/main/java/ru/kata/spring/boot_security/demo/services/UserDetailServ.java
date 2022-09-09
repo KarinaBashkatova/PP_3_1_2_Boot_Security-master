@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repositories.UsersRepository;
+import ru.kata.spring.boot_security.demo.security.MyUserDetails;
 
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class UserDetailServ implements UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public MyUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = usersRepository.findByUserName(username);
 
         if (user.isEmpty()) {
@@ -39,7 +40,7 @@ public class UserDetailServ implements UserDetailsService {
 
             //надо привести нашего пользовательского юзера к виду, понятному спрингу,
             // то есть к UserDetails
-            return new ru.kata.spring.boot_security.demo.security.UserDetails(user.get()); // любой объект, класс которого реализует интерфейс UserDetails, может быть возвращен из этого метода
+            return new MyUserDetails(user.get()); // любой объект, класс которого реализует интерфейс UserDetails, может быть возвращен из этого метода
         }
     }
 
